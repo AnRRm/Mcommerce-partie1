@@ -115,6 +115,15 @@ public class ProductController {
     	return map;
 
     }
+    
+    
+    @RequestMapping(value = "/SortedProducts", method = RequestMethod.GET)
+    public List<Product> trierProduitsParOrdreAlphabetique() {
+    	   	    	
+    	return productDao.findByOrderByNomAsc();
+
+    }
+    
 
 
 }
