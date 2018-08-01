@@ -13,9 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -103,6 +103,18 @@ public class ProductController {
         return productDao.chercherUnProduitCher(400);
     }
 
+    @RequestMapping(value = "/AdminProduits", method = RequestMethod.GET)
+    public HashMap<String, Integer> calculerMargeProduit() {
+    	
+    	HashMap<String, Integer> map = new HashMap<>();
+       	Iterable<Product> produits = productDao.findAll();
+        for(Product p : produits)
+        {
+        	map.put(p.toString(), p.calculateMarge());
+        }        	    	
+    	return map;
+
+    }
 
 
 }
